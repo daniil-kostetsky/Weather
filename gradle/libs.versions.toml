@@ -1,5 +1,5 @@
 [versions]
-agp = "9.0.1"
+agp = "9.1.0"
 coreKtx = "1.19.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
@@ -12,6 +12,7 @@ decompose = "3.5.0"
 mvikotlin = "4.4.0"
 foundation = "1.11.3"
 ksp = "2.3.10"
+retrofit2KotlinxSerializationConverter = "1.0.0"
 room = "2.8.4"
 dagger = "2.60.1"
 retrofit = "3.0.0"
@@ -39,6 +40,7 @@ com-arkivanov-jetpack = { group = "com.arkivanov.decompose", name = "extensions-
 com-arkivanov-mvikotlin = { group = "com.arkivanov.mvikotlin", name = "mvikotlin", version.ref = "mvikotlin" }
 com-arkivanov-mvikotlin-main = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-main", version.ref = "mvikotlin" }
 com-arkivanov-mvikotlin-extcoroutines = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-extensions-coroutines", version.ref = "mvikotlin" }
+retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
 room-coroutine = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }

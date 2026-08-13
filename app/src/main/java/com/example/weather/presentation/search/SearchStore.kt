@@ -12,6 +12,9 @@ import com.example.weather.presentation.search.SearchStore.Intent
 import com.example.weather.presentation.search.SearchStore.Label
 import com.example.weather.presentation.search.SearchStore.State
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -94,9 +97,8 @@ class SearchStoreFactory @Inject constructor(
     }
 
     private inner class ExecutorImpl(private val openReason: OpenReason) :
-        CoroutineExecutor<Intent, Action, State,
-                Msg, Label>() {
-
+        CoroutineExecutor<Intent, Action, State, Msg, Label>()
+    {
         private var searchJob: Job? = null
 
         override fun executeIntent(intent: Intent) {

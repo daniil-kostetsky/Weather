@@ -6,7 +6,7 @@ import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.example.weather.domain.entity.City
-import com.example.weather.domain.entity.Forecast
+import com.example.weather.domain.entity.ForecastWeather
 import com.example.weather.domain.usecase.ChangeFavouriteStateUseCase
 import com.example.weather.domain.usecase.GetForecastUseCase
 import com.example.weather.domain.usecase.ObserveFavouriteStateUseCase
@@ -39,7 +39,7 @@ interface DetailsStore : Store<Intent, State, Label> {
 
             data object Error : ForecastState
 
-            data class Loaded(val forecast: Forecast) : ForecastState
+            data class Loaded(val forecastWeather: ForecastWeather) : ForecastState
         }
     }
 
@@ -73,7 +73,7 @@ class DetailsStoreFactory @Inject constructor(
 
         data class FavouriteStatusChanged(val isFavourite: Boolean) : Action
 
-        data class ForecastLoaded(val forecast: Forecast) : Action
+        data class ForecastLoaded(val forecastWeather: ForecastWeather) : Action
 
         data object ForecastStartLoading : Action
 
@@ -84,7 +84,7 @@ class DetailsStoreFactory @Inject constructor(
 
         data class FavouriteStatusChanged(val isFavourite: Boolean) : Msg
 
-        data class ForecastLoaded(val forecast: Forecast) : Msg
+        data class ForecastLoaded(val forecastWeather: ForecastWeather) : Msg
 
         data object ForecastStartLoading : Msg
 
@@ -139,7 +139,7 @@ class DetailsStoreFactory @Inject constructor(
                 }
 
                 is Action.ForecastLoaded -> {
-                    dispatch(Msg.ForecastLoaded(action.forecast))
+                    dispatch(Msg.ForecastLoaded(action.forecastWeather))
                 }
 
                 Action.ForecastLoadingError -> {
@@ -160,7 +160,7 @@ class DetailsStoreFactory @Inject constructor(
             }
 
             is Msg.ForecastLoaded -> {
-                copy(forecastState = State.ForecastState.Loaded(msg.forecast))
+                copy(forecastState = State.ForecastState.Loaded(msg.forecastWeather))
             }
 
             Msg.ForecastLoadingError -> {

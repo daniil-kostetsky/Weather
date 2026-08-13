@@ -4,8 +4,8 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class WeatherDto(
-    @SerialName("last_updated_epoch") val date: Long,
+data class HourWeatherDto(
     @SerialName("temp_c") val tempC: Float,
+    @SerialName("time_epoch") val time: Long,
     @SerialName("condition") val conditionDto: ConditionDto
 )

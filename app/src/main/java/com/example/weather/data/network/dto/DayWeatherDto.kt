@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DayWeatherDto(
-    @SerialName("avgtemp_c") val tempC: Float,
+    @SerialName("avgtemp_c") val avgTempC: Float,
     @SerialName("condition") val conditionDto: ConditionDto
 )

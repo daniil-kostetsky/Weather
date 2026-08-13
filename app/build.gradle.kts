@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.weather"
     compileSdk {
-        version = release(36)
+        version = release(37)
     }
 
     defaultConfig {
@@ -69,6 +69,7 @@ dependencies {
 
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.gson)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
 
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.compose.foundation)
