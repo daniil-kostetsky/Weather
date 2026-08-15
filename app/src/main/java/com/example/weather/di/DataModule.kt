@@ -1,16 +1,16 @@
 package com.example.weather.di
 
 import android.content.Context
-import com.example.weather.data.local.FavouriteCitiesDao
-import com.example.weather.data.local.FavouriteDatabase
-import com.example.weather.data.network.api.ApiFactory
-import com.example.weather.data.network.api.ApiService
-import com.example.weather.data.repository.FavouriteRepositoryImpl
-import com.example.weather.data.repository.SearchRepositoryImpl
-import com.example.weather.data.repository.WeatherRepositoryImpl
-import com.example.weather.domain.repository.FavouriteRepository
-import com.example.weather.domain.repository.SearchRepository
-import com.example.weather.domain.repository.WeatherRepository
+import com.example.data.local.FavouriteCitiesDao
+import com.example.data.local.FavouriteDatabase
+import com.example.data.network.api.ApiFactory
+import com.example.data.network.api.ApiService
+import com.example.data.repository.FavouriteRepositoryImpl
+import com.example.data.repository.SearchRepositoryImpl
+import com.example.data.repository.WeatherRepositoryImpl
+import com.example.domain.repository.FavouriteRepository
+import com.example.domain.repository.SearchRepository
+import com.example.domain.repository.WeatherRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
