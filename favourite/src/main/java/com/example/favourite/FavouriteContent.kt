@@ -41,6 +41,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
@@ -132,6 +133,7 @@ private fun CityCard(
                     )
                 }
                 .clickable { onClick() }
+                .testTag("favourite_city_${cityItem.city.id}")
                 .padding(24.dp)
         ) {
 
@@ -250,6 +252,7 @@ private fun SearchCard(
                     shape = CircleShape
                 )
                 .clickable(onClick = onClick)
+                .testTag("favourite_search_card")
                 .padding(start = 6.dp, end = 6.dp)
         ) {
 

@@ -49,6 +49,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -124,7 +125,10 @@ private fun TopBar(
             titleContentColor = MaterialTheme.colorScheme.background
         ),
         navigationIcon = {
-            IconButton(onClick = { onBackClick() }) {
+            IconButton(
+                onClick = { onBackClick() },
+                modifier = Modifier.testTag("details_back_button")
+            ) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
                     contentDescription = null,
@@ -133,7 +137,10 @@ private fun TopBar(
             }
         },
         actions = {
-            IconButton(onClick = { onClickChangeFavouriteStatus() }) {
+            IconButton(
+                onClick = { onClickChangeFavouriteStatus() },
+                modifier = Modifier.testTag("details_favourite_button")
+            ) {
                 val icon = if (isCityFavourite) {
                     Icons.Default.Star
                 } else {

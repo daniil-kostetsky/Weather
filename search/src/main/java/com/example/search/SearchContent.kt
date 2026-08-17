@@ -44,6 +44,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.example.core.R
 import com.example.domain.entity.City
@@ -165,7 +166,10 @@ private fun SearchField(
             .clip(shape)
             .padding(horizontal = 8.dp, vertical = 8.dp)
     ) {
-        IconButton(onClick = onBack) {
+        IconButton(
+            onClick = onBack,
+            modifier = Modifier.testTag("search_back_button")
+        ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 tint = Color.White,
@@ -178,7 +182,8 @@ private fun SearchField(
             onValueChange = onQueryChange,
             modifier = Modifier
                 .weight(1f)
-                .focusRequester(focusRequester),
+                .focusRequester(focusRequester)
+                .testTag("search_text_field"),
             singleLine = true,
             textStyle = MaterialTheme.typography.bodyLarge.copy(color = Color.White),
             keyboardActions = KeyboardActions(onSearch = { onSearch() }),
@@ -233,6 +238,7 @@ private fun CityCard(
                 )
                 .clip(shape)
                 .clickable { onCityClick(city) }
+                .testTag("search_city_${city.id}")
                 .padding(16.dp)
         ) {
             Text(

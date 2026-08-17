@@ -4,12 +4,15 @@ import android.app.Application
 import com.example.weather.di.ApplicationComponent
 import com.example.weather.di.DaggerApplicationComponent
 
-class WeatherApp : Application() {
+open class WeatherApp : Application() {
 
     lateinit var applicationComponent: ApplicationComponent
 
     override fun onCreate() {
         super.onCreate()
-        applicationComponent = DaggerApplicationComponent.factory().create(this)
+        applicationComponent = createApplicationComponent()
     }
+
+    protected open fun createApplicationComponent(): ApplicationComponent =
+        DaggerApplicationComponent.factory().create(this)
 }

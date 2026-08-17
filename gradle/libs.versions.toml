@@ -9,7 +9,7 @@ kotlinxCoroutinesCore = "1.11.0"
 lifecycleRuntimeKtx = "2.11.0"
 activityCompose = "1.13.0"
 kotlin = "2.0.21"
-composeBom = "2024.09.00"
+composeBom = "2026.01.01"
 decompose = "3.5.0"
 mvikotlin = "4.4.0"
 foundation = "1.11.3"
@@ -25,6 +25,7 @@ material = "1.10.0"
 jetbrainsKotlinJvm = "2.2.10"
 material3 = "1.4.0"
 uiGraphics = "1.12.0"
+detekt = "1.23.8"
 
 
 [libraries]
@@ -49,6 +50,7 @@ com-arkivanov-mvikotlin = { group = "com.arkivanov.mvikotlin", name = "mvikotlin
 com-arkivanov-mvikotlin-main = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-main", version.ref = "mvikotlin" }
 com-arkivanov-mvikotlin-extcoroutines = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-extensions-coroutines", version.ref = "mvikotlin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesCore" }
 retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
 room-coroutine = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
@@ -56,7 +58,6 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation" }
 dagger-core = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
 dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
-retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 glide-compose = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glide" }
 icons = { group = "androidx.compose.material", name = "material-icons-extended" }
@@ -72,4 +73,4 @@ kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", vers
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
-
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
