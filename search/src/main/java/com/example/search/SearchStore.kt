@@ -130,7 +130,7 @@ class SearchStoreFactory @Inject constructor(
                         try {
                             val cities = searchCityUseCase(state().searchQuery)
                             dispatch(Msg.SearchResultLoaded(cities))
-                        } catch (e: Exception) {
+                        } catch (_: Exception) {
                             dispatch(Msg.SearchResultError)
                         }
                     }

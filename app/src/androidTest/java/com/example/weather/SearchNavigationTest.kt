@@ -27,6 +27,9 @@ class SearchNavigationTest {
 
         composeTestRule.onNodeWithTag(DETAILS_FAVOURITE_BUTTON).performClick()
 
+        composeTestRule.onNodeWithTag(DETAILS_BACK_BUTTON).performClick()
+        waitForTag(SEARCH_BACK_BUTTON)
+
         composeTestRule.onNodeWithTag(SEARCH_BACK_BUTTON).performClick()
         waitForTag(FAVOURITE_CITY)
 
@@ -44,8 +47,8 @@ class SearchNavigationTest {
         const val SEARCH_TEXT_FIELD = "search_text_field"
         const val SEARCH_BACK_BUTTON = "search_back_button"
         const val SEARCH_CITY = "search_city_1"
-        const val DETAILS_FAVOURITE_BUTTON = "details_favourite_button"
         const val DETAILS_BACK_BUTTON = "details_back_button"
+        const val DETAILS_FAVOURITE_BUTTON = "details_favourite_button"
         const val FAVOURITE_CITY = "favourite_city_1"
     }
 }

@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -40,8 +41,6 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     implementation(project(":domain"))
-    implementation(libs.androidx.core.ktx)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
 }

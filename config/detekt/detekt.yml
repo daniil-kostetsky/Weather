@@ -1,0 +1,5 @@
+weather-rules:
+  ComposableModifier:
+    active: true
+  GlobalScopeCoroutine:
+    active: true

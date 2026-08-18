@@ -105,7 +105,7 @@ class DetailsStoreFactory @Inject constructor(
                 try {
                     val forecast = getForecastUseCase(city.id)
                     dispatch(Action.ForecastLoaded(forecast))
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     dispatch(Action.ForecastLoadingError)
                 }
             }

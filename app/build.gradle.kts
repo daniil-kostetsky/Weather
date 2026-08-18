@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.runner)
 
     implementation(libs.com.arkivanov.decompose)
     implementation(libs.com.arkivanov.jetpack)
@@ -53,8 +54,8 @@ dependencies {
     implementation(libs.com.arkivanov.mvikotlin)
     implementation(libs.com.arkivanov.mvikotlin.main)
 
-    implementation(libs.room.coroutine)
-    ksp(libs.room.compiler)
+     implementation(libs.room.coroutine)
+     ksp(libs.room.compiler)
 
     implementation(libs.dagger.core)
     ksp(libs.dagger.compiler)
@@ -68,9 +69,9 @@ dependencies {
     implementation(project(":favourite"))
     implementation(project(":search"))
 
-    testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    testImplementation(libs.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }

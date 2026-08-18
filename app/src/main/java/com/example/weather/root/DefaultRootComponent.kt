@@ -45,9 +45,8 @@ class DefaultRootComponent @AssistedInject constructor(
         return when (config) {
             is Config.Details -> {
                 val component = detailsComponentFactory.create(
-                    city = config.city, onBackClicked = {
-                        navigation.pop()
-                    },
+                    city = config.city,
+                    onBackClicked = { navigation.pop() },
                     componentContext = componentContext
                 )
                 RootComponent.Child.Details(component)
@@ -72,7 +71,8 @@ class DefaultRootComponent @AssistedInject constructor(
             is Config.Search -> {
                 val component =
                     searchComponentFactory.create(
-                        openReason = config.openReason, onBackClicked = {
+                        openReason = config.openReason,
+                        onBackClicked = {
                             navigation.pop()
                         },
                         onCitySavedToFavourite = {

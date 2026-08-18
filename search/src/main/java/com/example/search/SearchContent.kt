@@ -43,8 +43,8 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.core.R
 import com.example.domain.entity.City
@@ -102,9 +102,7 @@ fun SearchContent(component: SearchComponent) {
                 )
             }
 
-            SearchStore.State.SearchState.Initial -> {
-
-            }
+            SearchStore.State.SearchState.Initial -> {}
 
             SearchStore.State.SearchState.Loading -> {
                 Box(
@@ -126,11 +124,11 @@ fun SearchContent(component: SearchComponent) {
                     items(
                         items = searchState.cities,
                         key = { it.id }
-                    ) {
+                    ) {city ->
                         CityCard(
-                            city = it,
+                            city = city,
                             onCityClick = {
-                                component.onClickCity(it)
+                                component.onClickCity(city)
                             }
                         )
                     }

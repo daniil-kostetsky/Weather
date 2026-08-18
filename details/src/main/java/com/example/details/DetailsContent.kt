@@ -1,10 +1,5 @@
 package com.example.details
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.slideIn
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -14,7 +9,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,11 +22,9 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -45,26 +37,20 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.example.core.R
 import com.example.core.formattedFullDate
-import com.example.core.formattedShortDayOfWeek
 import com.example.core.tempToFormattedString
-import com.example.domain.entity.CurrentWeather
 import com.example.domain.entity.DayWeather
 import com.example.domain.entity.ForecastWeather
 import com.example.domain.entity.HourWeather
@@ -130,7 +116,7 @@ private fun TopBar(
                 modifier = Modifier.testTag("details_back_button")
             ) {
                 Icon(
-                    imageVector = Icons.Default.ArrowBack,
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.background
                 )
@@ -244,8 +230,15 @@ private fun GlassTabRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.White.copy(alpha = 0.15f), shape)
-            .border(1.dp, Color.White.copy(alpha = 0.25f), shape)
+            .background(
+                color = Color.White.copy(alpha = 0.15f),
+                shape = shape
+            )
+            .border(
+                width = 1.dp,
+                color = Color.White.copy(alpha = 0.25f),
+                shape = shape
+            )
             .padding(4.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
@@ -281,7 +274,10 @@ private fun HourlyForecastList(hours: List<HourWeather>) {
         verticalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(bottom = 16.dp)
     ) {
-        items(items = hours, key = { it.date.timeInMillis }) { hour ->
+        items(
+            items = hours,
+            key = { it.date.timeInMillis }
+        ) { hour ->
             WeatherItemCard(
                 primaryText = hour.date.formatTime(),
                 secondaryText = hour.conditionText,
@@ -300,7 +296,10 @@ private fun DailyForecastList(days: List<DayWeather>) {
         verticalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(bottom = 16.dp)
     ) {
-        items(items = days, key = { it.date.timeInMillis }) { day ->
+        items(
+            items = days,
+            key = { it.date.timeInMillis }
+        ) { day ->
             WeatherItemCard(
                 primaryText = day.date.formatDayOfWeek(),
                 secondaryText = day.avgConditionText,
@@ -324,9 +323,19 @@ private fun WeatherItemCard(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.White.copy(alpha = 0.18f), shape)
-            .border(1.dp, Color.White.copy(alpha = 0.25f), shape)
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .background(
+                color = Color.White.copy(alpha = 0.18f),
+                shape = shape
+            )
+            .border(
+                width = 1.dp,
+                color = Color.White.copy(alpha = 0.25f),
+                shape = shape
+            )
+            .padding(
+                horizontal = 16.dp,
+                vertical = 12.dp
+            ),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
@@ -371,91 +380,6 @@ private fun Calendar.formatTime(): String {
 private fun Calendar.formatDayOfWeek(): String {
     val sdf = SimpleDateFormat("EEE, d MMM", Locale.getDefault())
     return sdf.format(time).replaceFirstChar { it.uppercase() }
-}
-
-
-@Composable
-private fun AnimatedUpcomingWeather(upcoming: List<CurrentWeather>) {
-    val state = remember {
-        MutableTransitionState(false).apply {
-            targetState = true
-        }
-    }
-    AnimatedVisibility(
-        visibleState = state,
-        enter = fadeIn(animationSpec = tween(500)) + slideIn(
-            animationSpec = tween(500),
-            initialOffset = { IntOffset(0, it.height) }
-        )
-    ) {
-        UpcomingWeather(upcoming = upcoming)
-    }
-}
-
-@Composable
-private fun UpcomingWeather(upcoming: List<CurrentWeather>) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(24.dp),
-        shape = MaterialTheme.shapes.extraLarge,
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.background.copy(
-                alpha = 0.24f
-            )
-        )
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(24.dp)
-        ) {
-            Text(
-                text = stringResource(R.string.upcoming),
-                style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier
-                    .padding(bottom = 24.dp)
-                    .align(Alignment.CenterHorizontally)
-            )
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                upcoming.forEach {
-                    SmallWeatherCard(weather = it)
-                }
-            }
-        }
-    }
-}
-
-@OptIn(ExperimentalGlideComposeApi::class)
-@Composable
-private fun RowScope.SmallWeatherCard(weather: CurrentWeather) {
-    Card(
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.background
-        ),
-        modifier = Modifier
-            .height(128.dp)
-            .weight(1f)
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(text = weather.tempC.tempToFormattedString())
-            GlideImage(
-                modifier = Modifier.size(48.dp),
-                model = weather.conditionUrl,
-                contentDescription = null
-            )
-            Text(text = weather.date.formattedShortDayOfWeek())
-        }
-    }
 }
 
 @Composable

@@ -1,13 +1,12 @@
 plugins {
-    id("java-library")
     alias(libs.plugins.jetbrains.kotlin.jvm)
-    alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.detekt)
 }
+
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
 }
+
 kotlin {
     compilerOptions {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
@@ -15,8 +14,9 @@ kotlin {
 }
 
 dependencies {
+    compileOnly(libs.detekt.api)
+}
 
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.javax.inject)
-    implementation(libs.kotlinx.serialization.json)
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
